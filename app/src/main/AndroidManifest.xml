@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.creolise">
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +17,7 @@
         android:theme="@style/Theme.Creolise"
         tools:targetApi="31">
         <activity
-            android:name=".Vocal"
+            android:name=".ApiAdresse"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Creolise.NoActionBar">

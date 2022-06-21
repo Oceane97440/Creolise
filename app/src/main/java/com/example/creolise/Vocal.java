@@ -35,6 +35,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import model.Dico;
+import utils.OpenHelpher;
 
 public class Vocal extends AppCompatActivity {
 
@@ -43,6 +44,8 @@ public class Vocal extends AppCompatActivity {
     private static Pattern pattern;
     private static Matcher matcher;
     private Map<String, String> dictionary = new HashMap<String, String>();
+    private OpenHelpher openHelper;
+
     String[] ListElements = new String[]{
     };
 
@@ -55,9 +58,10 @@ public class Vocal extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
+        openHelper = new  OpenHelpher(this);
 
         //création du dico de données
-        dictionary.put("rougail", "Plat traditionnel créole, attention recette à ne pas revisiter)");
+        dictionary.put("rougail", "Plat traditionnel créole (attention recette à ne pas revisiter)");
         dictionary.put("pilon", "Mortier (Instrument cylindrique servant à piler.)");
         dictionary.put("un Malbar", "À la Réunion, Indien, Indienne non musulman.");
         dictionary.put("mon cabri", "chèvre ou bouc");
@@ -65,8 +69,20 @@ public class Vocal extends AppCompatActivity {
         dictionary.put("mon tantine", "Expression qui désigne les filles de la Réunion");
         dictionary.put("la case", "Maison");
 
+             /*Dico dico = new Dico();
+        dico.setMot_creole("pilon");
+        dico.setTraduction("Mortier (Instrument cylindrique servant à piler.)");
 
+        openHelper.add(dico);
+         Log.d("SQL",dico.toFullString());
 
+        List<Dico> list=  openHelper.findAll();
+
+        for (Dico cn : list) {
+            String log = "Name: " + cn.getMot_creole() + " ,Phone: " + cn.getTraduction();
+            // Writing Contacts to log
+            Log.d("sql", log);
+        }*/
     }
 
     public void ActionMicro(View v) {

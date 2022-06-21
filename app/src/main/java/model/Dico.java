@@ -7,7 +7,8 @@ public class Dico implements Serializable {
     private String mot_creole;
     private String traduction;
 
-    public Dico(String mot_creole, String traduction) {
+
+    public Dico() {
         this.mot_creole = mot_creole;
         this.traduction = traduction;
     }
@@ -28,6 +29,10 @@ public class Dico implements Serializable {
 
     public void setTraduction(String traduction) {
         this.traduction = traduction;
+    }
+
+    public String toFullString() {
+        return mot_creole.toString()+" "+traduction.toString();
     }
 
 }
