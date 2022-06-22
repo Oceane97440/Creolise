@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linarLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#009688"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:animateLayoutChanges="false"
+        android:background="#009688"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Titre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FE414D"
+            android:fontFamily="sans-serif-black"
+            android:text="Application : Créolise"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textIsSelectable="false"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            app:srcCompat="@drawable/reunion_ciel_1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/vocal"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:backgroundTint="#B5FF4C4F"
+            android:onClick="ActionMicro"
+            android:text="PARLER POUR TRADUIRE"
+            app:icon="@android:drawable/ic_btn_speak_now" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#3EFFFFFF"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fonctionaliter_voc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autoText="false"
+            android:bufferType="normal"
+            android:capitalize="none"
+            android:cursorVisible="false"
+            android:ellipsize="none"
+            android:fontFamily="sans-serif-black"
+            android:paddingTop="1dp"
+            android:paddingEnd="1dp"
+            android:text="Expréssions créole traduite en français avec la définition du mot :"
+            android:textAlignment="center"
+            android:textColor="#94000000"
+            app:autoSizeTextType="none" />
+
+        <TextView
+            android:id="@+id/trad_dico"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:text="Traduction"
+            android:textAlignment="center"
+            android:textColor="#044942" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:background="#FDF6F6">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.118">
+
+            <TextView
+                android:id="@+id/fonctionalite_gps"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Localisations des monuments historiques (-2km)"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/my_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Votre localisation"
+                android:textAlignment="center" />
+
+            <Spinner
+                android:id="@+id/spinner_monuments"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#9FF44336"
+                android:spinnerMode="dialog" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="match_parent"
+            android:layout_height="184dp"
+            android:background="#39F2FFFE"
+            android:paddingStart="1dp"
+            android:paddingLeft="1dp"
+            android:paddingTop="1dp"
+            android:paddingEnd="1dp"
+            android:paddingRight="1dp"
+            android:paddingBottom="1dp"
+            android:text="Information"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+</LinearLayout>
