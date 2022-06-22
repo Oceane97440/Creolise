@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -55,7 +56,7 @@ import java.util.regex.Pattern;
 import model.Dico;
 import utils.OpenHelpher;
 
-public class Vocal extends AppCompatActivity implements LocationListener {
+public class Vocal extends AppCompatActivity implements LocationListener, AdapterView.OnItemSelectedListener {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
@@ -168,7 +169,7 @@ public class Vocal extends AppCompatActivity implements LocationListener {
         try {
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(), 1);
             String codePostal = addresses.get(0).getPostalCode();
-            addrTxt.setText(addresses.get(0).getAddressLine(0));
+            addrTxt.setText("Votre position actuel: "+addresses.get(0).getAddressLine(0));
 
             //Requet API des lieux historique par ville
             RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -225,22 +226,15 @@ public class Vocal extends AppCompatActivity implements LocationListener {
                 }
 
             }
-        } catch (JSONException e) {
+        } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
 
     }
 
 
-    private void distance(double latitude, double longitude, double endLatitude, double endLongitude, String nom, String code_postal, String ville, String historique) {
+    private void distance(double latitude, double longitude, double endLatitude, double endLongitude, String nom, String code_postal, String ville, String historique) throws IOException {
         Spinner list_monuments = this.findViewById(R.id.spinner_monuments);
-        TextView info_monuments = this.findViewById(R.id.info);
-
-       /* final List<String> ListElementsArrayList = new ArrayList<>(Arrays.asList(ListElements));
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>
-                (this, android.R.layout.simple_spinner_item, ListElementsArrayList);
-
-        list_monuments.setAdapter(adapter);*/
 
 
         double theta = longitude - endLongitude;
@@ -257,25 +251,49 @@ public class Vocal extends AppCompatActivity implements LocationListener {
         if (dist<=2){
            // Log.d("gps","test distance "+String.format(Locale.FRENCH,"%,f",dist));
             //Log.d("api", "data " +nom + endLatitude + endLongitude);
-            ar.add(nom);
+            //ar.add(nom);
+            Geocoder geocoder = new Geocoder(this);
 
-            Log.d("api", "data " +ar);
+            List<Address> addresses = geocoder.getFromLocation(endLatitude,longitude, 1);
+            String adresse_lieux=addresses.get(0).getAddressLine(0);
+
+            String data_spinner = nom+"("+adresse_lieux+")"+historique;
+
+           ar.add(data_spinner);
+
+            //Log.d("api", "data " +ar);
 
 
-
-
-            /*for (int x = 0; x < length; x++) {
-                ListElementsArrayList.add(ar.get(5));
-
-
-            }*/
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                     android.R.layout.simple_spinner_item, ar);
             list_monuments.setAdapter(adapter);
 
+            list_monuments.setOnItemSelectedListener(this);
+
         }
 
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        onItemSelectedHandler(parent, view, position, id);
+    }
+
+    private void onItemSelectedHandler(AdapterView<?> parent, View view, int position, long id) {
+        TextView info_monuments = this.findViewById(R.id.info);
+
+        Adapter adapter = parent.getAdapter();
+        //Log.d("spinner","   "+adapter.getItem(position));
+
+        info_monuments.setText(adapter.getItem(position).toString());
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        
+    }
+
 
     private double rad2deg(double dist) {
         return (dist * 180.0 / Math.PI);
