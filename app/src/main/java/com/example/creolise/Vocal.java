@@ -195,6 +195,7 @@ public class Vocal extends AppCompatActivity implements LocationListener, Adapte
         }
     }
 
+    //traitement et recup data de l'API
     private void AllDataRep(JSONArray response, android.location.Location location) {
         double latitude = location.getLatitude();
         double longitude =  location.getLongitude();
@@ -220,6 +221,7 @@ public class Vocal extends AppCompatActivity implements LocationListener, Adapte
                     double coordinates_longitude = (double)coordinates.get(1);
 
 
+                    //calculer de la distance en metre de la postion actuel vers le lieux
                     distance(latitude, longitude, coordinates_latitude,
                             coordinates_longitude,nom,code_postal,ville,historique);
 
@@ -248,6 +250,7 @@ public class Vocal extends AppCompatActivity implements LocationListener, Adapte
         dist = dist * 60 * 1.1515;
 
 
+        //si la distance entre moi et le lieux est < à 2km on affiche le monument
         if (dist<=2){
            // Log.d("gps","test distance "+String.format(Locale.FRENCH,"%,f",dist));
             //Log.d("api", "data " +nom + endLatitude + endLongitude);
@@ -256,18 +259,17 @@ public class Vocal extends AppCompatActivity implements LocationListener, Adapte
 
             List<Address> addresses = geocoder.getFromLocation(endLatitude,longitude, 1);
             String adresse_lieux=addresses.get(0).getAddressLine(0);
-
             String data_spinner = nom+"("+adresse_lieux+")"+historique;
 
+            //push data dans array
            ar.add(data_spinner);
 
             //Log.d("api", "data " +ar);
 
-
+            //la data de array est charger dans le menu deroulant
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                     android.R.layout.simple_spinner_item, ar);
             list_monuments.setAdapter(adapter);
-
             list_monuments.setOnItemSelectedListener(this);
 
         }
@@ -285,6 +287,7 @@ public class Vocal extends AppCompatActivity implements LocationListener, Adapte
         Adapter adapter = parent.getAdapter();
         //Log.d("spinner","   "+adapter.getItem(position));
 
+        //affiche les information du lieux
         info_monuments.setText(adapter.getItem(position).toString());
 
     }
