@@ -8,7 +8,7 @@
 
 
 
-## Fonctionalités
+## Fonctionnalités
 
 1. Parler dans le micro pour traduire des mots créoles (ex:rougail)
 
@@ -24,7 +24,8 @@
 
 - Java
 - Natif : Micro , GPS
-- API listing des monument: [api JsonServeur](https://api-monuments-re.herokuapp.com/)
+- API listing des monuments: [api JsonServeur](https://api-monuments-re.herokuapp.com/)
+- ScrollView
 
 
 <p align="center">
