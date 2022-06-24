@@ -79,6 +79,8 @@ public class Vocal extends AppCompatActivity implements LocationListener, Adapte
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creolise);
+        authorisationGPS();
+        Log.d("location","je suis dans le Oncreate");
 
         //création du dico de données
         dictionary.put("rougail", "Plat traditionnel créole (attention recette à ne pas revisiter)");
@@ -89,7 +91,7 @@ public class Vocal extends AppCompatActivity implements LocationListener, Adapte
         dictionary.put("mon tantine", "Expression qui désigne les filles de la Réunion");
         dictionary.put("la case", "Maison");
 
-        authorisationGPS();
+
 
 
     }
@@ -97,6 +99,10 @@ public class Vocal extends AppCompatActivity implements LocationListener, Adapte
     private void authorisationGPS() {
 
         locationManage = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        Log.d("location","authorisationGPS "+locationManage);
+
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             //demander la permission de geolocalisation
             requestPermissions(new String[]{
@@ -160,6 +166,8 @@ public class Vocal extends AppCompatActivity implements LocationListener, Adapte
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
+
+        Log.d("location","-"+location);
         //recupère UI textView
         TextView addrTxt = this.findViewById(R.id.my_location);
 
@@ -255,11 +263,13 @@ public class Vocal extends AppCompatActivity implements LocationListener, Adapte
            // Log.d("gps","test distance "+String.format(Locale.FRENCH,"%,f",dist));
             //Log.d("api", "data " +nom + endLatitude + endLongitude);
             //ar.add(nom);
+            double dist_monuments = Math.round(dist*100.0)/100.0;
+
             Geocoder geocoder = new Geocoder(this);
 
             List<Address> addresses = geocoder.getFromLocation(endLatitude,longitude, 1);
             String adresse_lieux=addresses.get(0).getAddressLine(0);
-            String data_spinner = nom+"("+adresse_lieux+")"+historique;
+            String data_spinner = nom+" : "+dist_monuments+"Klm "+" ("+adresse_lieux+") ."+historique;
 
             //push data dans array
            ar.add(data_spinner);
@@ -313,6 +323,9 @@ public class Vocal extends AppCompatActivity implements LocationListener, Adapte
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        Log.d("location","-"+requestCode);
+        Log.d("location","onRequestPermissionsResult");
 
         if (requestCode == 7000) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {

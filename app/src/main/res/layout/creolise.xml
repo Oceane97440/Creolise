@@ -39,13 +39,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/vocal"
             android:layout_width="match_parent"
-            android:layout_height="66dp"
+            android:layout_height="match_parent"
             android:backgroundTint="#B5FF4C4F"
             android:onClick="ActionMicro"
             android:text="PARLER POUR TRADUIRE"
@@ -151,10 +151,10 @@
                     android:id="@+id/info"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#39F2FFFE"
+                    android:background="#36F2FFFE"
                     android:paddingStart="1dp"
                     android:paddingLeft="1dp"
-                    android:paddingTop="1dp"
+                    android:paddingTop="10dp"
                     android:paddingEnd="1dp"
                     android:paddingRight="1dp"
                     android:paddingBottom="1dp"
